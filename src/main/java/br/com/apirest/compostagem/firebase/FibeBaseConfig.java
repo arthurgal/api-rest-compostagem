@@ -24,6 +24,7 @@ public class FibeBaseConfig {
 
     FirebaseApp fireBaseApp = FirebaseApp.initializeApp(options);
     return FirestoreClient.getFirestore(fireBaseApp);
+
     }
 
 }
