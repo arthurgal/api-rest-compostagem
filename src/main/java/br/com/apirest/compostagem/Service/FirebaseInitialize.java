@@ -16,7 +16,7 @@ public class FirebaseInitialize {
         try{
 
             FileInputStream serviceAccount =
-                    new FileInputStream("C:\\api-rest-compostagem\\serviceAccountKey.json");
+                    new FileInputStream("C:\\compostagem\\src\\main\\resources\\serviceAccountKey.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -30,7 +30,5 @@ public class FirebaseInitialize {
             e.printStackTrace();
         }
     }
-
-
 
 }
