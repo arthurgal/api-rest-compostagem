@@ -2,11 +2,10 @@ package br.com.apirest.compostagem.controller;
 
 import br.com.apirest.compostagem.Service.UsuarioService;
 import br.com.apirest.compostagem.model.Usuario;
+import com.google.cloud.firestore.DocumentReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
 
@@ -22,5 +21,10 @@ public class UsuarioController {
 
         return usuarioService.salvarUsuario(usuario);
 
+    }
+
+    @GetMapping("/{nome}")
+    public Usuario detalha(@PathVariable String nome) throws ExecutionException, InterruptedException {
+        return usuarioService.detalhaUsuario(nome);
     }
 }
