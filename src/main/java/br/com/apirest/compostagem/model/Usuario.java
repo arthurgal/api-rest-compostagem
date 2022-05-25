@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Getter
 @Setter
-public class Pessoa {
+public class Usuario {
 
-    private String noem;
+    private String nome;
+    private String endereco;
+    private String cpf;
+    private String email;
 
 }
