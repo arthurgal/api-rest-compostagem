@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -23,8 +24,8 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/{nome}")
-    public Usuario detalha(@PathVariable String nome) throws ExecutionException, InterruptedException {
-        return usuarioService.detalhaUsuario(nome);
+    @GetMapping("/busca")
+    public Usuario detalha(@RequestParam String cpf) throws ExecutionException, InterruptedException {
+        return usuarioService.detalhaUsuario(cpf);
     }
 }

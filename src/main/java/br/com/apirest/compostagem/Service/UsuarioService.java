@@ -21,14 +21,14 @@ public class UsuarioService {
 
     public String salvarUsuario(Usuario usuario) throws ExecutionException, InterruptedException {
 
-        ApiFuture<WriteResult> colecao = db.collection("usuario").document().set(usuario);
+        ApiFuture<WriteResult> colecao = db.collection("usuario").document(usuario.getCpf()).set(usuario);
         return colecao.get().getUpdateTime().toString();
     }
 
 
-    public Usuario detalhaUsuario(String nome) throws ExecutionException, InterruptedException {
+    public Usuario detalhaUsuario(String cpf) throws ExecutionException, InterruptedException {
 
-        DocumentReference documentReference = db.collection("usuario").document(nome);
+        DocumentReference documentReference = db.collection("usuario").document(cpf);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot documentSnapshot = future.get();
         Usuario usuario;
