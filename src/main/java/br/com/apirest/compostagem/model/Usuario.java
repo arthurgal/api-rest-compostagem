@@ -1,12 +1,12 @@
 package br.com.apirest.compostagem.model;
 
-import br.com.apirest.compostagem.validacaoCpf.Cpf;
+import javax.validation.constraints.Email;
+
+import org.springframework.lang.Nullable;
+
+import br.com.apirest.compostagem.model.validator.cpf_cnpj.Cpf;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.constraints.Email;
 
 @Getter
 @Setter

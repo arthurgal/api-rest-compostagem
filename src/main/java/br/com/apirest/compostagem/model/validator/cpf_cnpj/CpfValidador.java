@@ -1,4 +1,4 @@
-package br.com.apirest.compostagem.validacaoCpf;
+package br.com.apirest.compostagem.model.validator.cpf_cnpj;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

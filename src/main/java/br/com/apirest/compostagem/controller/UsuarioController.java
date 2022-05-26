@@ -1,15 +1,21 @@
 package br.com.apirest.compostagem.controller;
 
-import br.com.apirest.compostagem.Service.UsuarioService;
-import br.com.apirest.compostagem.model.Usuario;
-import com.google.cloud.firestore.DocumentReference;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
-import java.util.concurrent.ExecutionException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.apirest.compostagem.model.Usuario;
+import br.com.apirest.compostagem.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuario")
