@@ -39,4 +39,10 @@ public class UsuarioService {
         return null;
     }
 
+    public String atualizaUsuario(Usuario usuario) throws ExecutionException, InterruptedException {
+
+        ApiFuture<WriteResult> colecao = db.collection("usuario").document(usuario.getCpf()).set(usuario);
+        return colecao.get().getUpdateTime().toString();
+    }
+
 }

@@ -29,4 +29,11 @@ public class UsuarioController {
     public Usuario detalha(@RequestParam String cpf) throws ExecutionException, InterruptedException {
         return usuarioService.detalhaUsuario(cpf);
     }
+
+    @PutMapping("/atualiza")
+    public String atualiza(@Valid @RequestBody Usuario usuario) throws ExecutionException, InterruptedException {
+        return usuarioService.atualizaUsuario(usuario);
+
+    }
+
 }
