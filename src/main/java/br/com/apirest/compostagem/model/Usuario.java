@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.constraints.Email;
+
 @Getter
 @Setter
 public class Usuario {
@@ -13,6 +15,7 @@ public class Usuario {
     private String endereco;
     @Cpf
     private String cpf;
+    @Email
     private String email;
 
 }
