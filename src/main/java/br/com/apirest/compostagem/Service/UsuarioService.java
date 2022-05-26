@@ -45,4 +45,8 @@ public class UsuarioService {
         return colecao.get().getUpdateTime().toString();
     }
 
+    public void deletaUsuario(String cpf){
+        ApiFuture<WriteResult> result = db.collection("usuario").document(cpf).delete();
+    }
+
 }

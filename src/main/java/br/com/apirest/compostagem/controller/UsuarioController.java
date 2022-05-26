@@ -36,4 +36,9 @@ public class UsuarioController {
 
     }
 
+    @DeleteMapping
+    public void deleta(@RequestParam String cpf){
+        usuarioService.deletaUsuario(cpf);
+    }
+
 }
