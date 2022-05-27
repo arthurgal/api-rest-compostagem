@@ -9,15 +9,18 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.cloud.FirestoreClient;
 
 import br.com.apirest.compostagem.model.Usuario;
 
 @Service
 public class UsuarioService {
 
-    Firestore db = FirestoreClient.getFirestore();
-
+	private Firestore db;
+	
+	public UsuarioService(Firestore db) {
+		this.db = db;
+	}
+		
     public String salvarUsuario(Usuario usuario) throws ExecutionException, InterruptedException {
 
         ApiFuture<WriteResult> colecao = db.collection("usuario").document(usuario.getCpf()).set(usuario);
