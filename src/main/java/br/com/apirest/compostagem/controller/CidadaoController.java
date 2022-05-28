@@ -14,37 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.apirest.compostagem.model.Usuario;
-import br.com.apirest.compostagem.service.UsuarioService;
+import br.com.apirest.compostagem.model.Cidadao;
+import br.com.apirest.compostagem.service.CidadaoService;
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioController {
+@RequestMapping("/cidadao")
+public class CidadaoController {
 
     @Autowired
-    UsuarioService usuarioService;
+    CidadaoService cidadaoService;
 
     @PostMapping
-    public String salva(@Valid @RequestBody Usuario usuario) throws ExecutionException, InterruptedException {
+    public String salva(@Valid @RequestBody Cidadao cidadao) throws ExecutionException, InterruptedException {
 
-        return usuarioService.salvarUsuario(usuario);
+        return cidadaoService.salvarCidadao(cidadao);
 
     }
 
     @GetMapping("/busca")
-    public Usuario detalha(@RequestParam String cpf) throws ExecutionException, InterruptedException {
-        return usuarioService.detalhaUsuario(cpf);
+    public Cidadao detalha(@RequestParam String cpf) throws ExecutionException, InterruptedException {
+        return cidadaoService.detalhaCidadao(cpf);
     }
 
     @PutMapping("/atualiza")
-    public String atualiza(@Valid @RequestBody Usuario usuario) throws ExecutionException, InterruptedException {
-        return usuarioService.atualizaUsuario(usuario);
+    public String atualiza(@Valid @RequestBody Cidadao cidadao) throws ExecutionException, InterruptedException {
+        return cidadaoService.atualizaCidadao(cidadao);
 
     }
 
     @DeleteMapping
     public void deleta(@RequestParam String cpf){
-        usuarioService.deletaUsuario(cpf);
+        cidadaoService.deletaCidadao(cpf);
     }
 
 }

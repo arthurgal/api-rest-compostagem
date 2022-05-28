@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Usuario {
+public class Cidadao {
 
     @Nullable
     private String nome;
