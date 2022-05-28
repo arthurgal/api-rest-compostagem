@@ -1,12 +1,12 @@
 package br.com.apirest.compostagem.model;
 
-import javax.validation.constraints.Email;
-
-import org.springframework.lang.Nullable;
-
-import br.com.apirest.compostagem.model.validator.cpf_cnpj.Cpf;
+import br.com.caelum.stella.bean.validation.CNPJ;
+import br.com.caelum.stella.bean.validation.CPF;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class Cidadao {
     private String nome;
     @Nullable
     private String endereco;
-    @Cpf
+    @CPF
     private String cpf;
     @Email
     private String email;
