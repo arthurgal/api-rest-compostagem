@@ -23,6 +23,8 @@ public class CidadaoService {
     public String salvarCidadao(Cidadao cidadao) throws ExecutionException, InterruptedException {
 
         ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
+        ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
+        colecaoEndereco.get().getUpdateTime().toString();
         return colecao.get().getUpdateTime().toString();
     }
 

@@ -15,7 +15,7 @@ public class Cidadao {
     @Nullable
     private String nome;
     @Nullable
-    private String endereco;
+    private Endereco endereco;
     @CPF
     private String cpf;
     @Email
