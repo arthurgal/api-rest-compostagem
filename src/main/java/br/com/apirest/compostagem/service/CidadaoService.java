@@ -20,14 +20,22 @@ public class CidadaoService {
 		this.db = db;
 	}
 		
-    public String salvarCidadao(Cidadao cidadao) throws ExecutionException, InterruptedException {
+    public String salvarCidadao(Cidadao cidadao){
 
-        ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
-        ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
-        colecaoEndereco.get().getUpdateTime().toString();
-        return colecao.get().getUpdateTime().toString();
+        try {
+
+            ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
+            colecaoEndereco.get().getUpdateTime().toString();
+
+            ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
+            return colecao.get().getUpdateTime().toString();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-
 
     public Cidadao detalhaCidadao(String cpf) throws ExecutionException, InterruptedException {
 

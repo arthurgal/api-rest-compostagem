@@ -25,7 +25,7 @@ public class CidadaoController {
     CidadaoService cidadaoService;
 
     @PostMapping
-    public String salva(@Valid @RequestBody Cidadao cidadao) throws ExecutionException, InterruptedException {
+    public String salva(@Valid @RequestBody Cidadao cidadao){
 
         return cidadaoService.salvarCidadao(cidadao);
 
