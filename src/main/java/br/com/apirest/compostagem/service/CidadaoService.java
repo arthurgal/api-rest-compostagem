@@ -46,7 +46,12 @@ public class CidadaoService {
             cidadao.setNome(c.getString("nome"));
             cidadao.setEmail(c.getString("email"));
             cidadao.setTelefone(c.getString("telefone"));
-            cidadao.setEndereco(new Endereco());
+            cidadao.setEndereco(new Endereco(c.getString("endereco.logradouro"),
+                    c.getString("endereco.numero"),
+                    c.getString("endereco.estado"),
+                    c.getString("endereco.cidade"),
+                    c.getString("endereco.cep"),
+                    c.getString("endereco.bairro")));
             return cidadao;
         }).collect(Collectors.toList());
         return listaCidadaos;

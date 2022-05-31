@@ -21,4 +21,12 @@ public class Endereco {
     @Nullable
     private String estado;
 
+    public Endereco(String logradouro, String numero, String estado, String cidade, String cep, String bairro) {
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.cep = cep;
+        this.bairro = bairro;
+    }
 }
