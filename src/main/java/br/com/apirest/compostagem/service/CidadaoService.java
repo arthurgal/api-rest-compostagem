@@ -1,15 +1,15 @@
 package br.com.apirest.compostagem.service;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 import br.com.apirest.compostagem.model.Cidadao;
+import br.com.apirest.compostagem.model.Endereco;
+import com.google.cloud.firestore.*;
 import org.springframework.stereotype.Service;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
 
 @Service
 public class CidadaoService {
@@ -29,12 +29,27 @@ public class CidadaoService {
 
             ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
             return colecao.get().getUpdateTime().toString();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<Cidadao> listaCidaos() throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> future = db.collection("cidadao").get();
+
+        List<QueryDocumentSnapshot> documentos = future.get().getDocuments();
+
+        List<Cidadao> listaCidadaos = documentos.stream().map(c -> {
+            Cidadao cidadao = new Cidadao();
+            cidadao.setCpf(c.getString("cpf"));
+            cidadao.setNome(c.getString("nome"));
+            cidadao.setEmail(c.getString("email"));
+            cidadao.setTelefone(c.getString("telefone"));
+            cidadao.setEndereco(new Endereco());
+            return cidadao;
+        }).collect(Collectors.toList());
+        return listaCidadaos;
     }
 
     public Cidadao detalhaCidadao(String cpf) throws ExecutionException, InterruptedException {
@@ -50,10 +65,19 @@ public class CidadaoService {
         return null;
     }
 
-    public String atualizaCidadao(Cidadao cidadao) throws ExecutionException, InterruptedException {
+    public String atualizaCidadao(Cidadao cidadao){
 
-        ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
-        return colecao.get().getUpdateTime().toString();
+        try {
+
+            ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
+            colecaoEndereco.get().getUpdateTime().toString();
+
+            ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
+            return colecao.get().getUpdateTime().toString();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void deletaCidadao(String cpf){

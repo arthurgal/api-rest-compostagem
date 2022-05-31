@@ -20,5 +20,7 @@ public class Cidadao {
     private String cpf;
     @Email
     private String email;
+    @Nullable
+    private String telefone;
 
 }

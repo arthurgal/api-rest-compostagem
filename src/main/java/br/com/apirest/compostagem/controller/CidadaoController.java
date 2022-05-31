@@ -1,18 +1,12 @@
 package br.com.apirest.compostagem.controller;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.apirest.compostagem.model.Cidadao;
 import br.com.apirest.compostagem.service.CidadaoService;
@@ -31,13 +25,18 @@ public class CidadaoController {
 
     }
 
+    @GetMapping
+    public List<Cidadao> lista() throws ExecutionException, InterruptedException {
+        return cidadaoService.listaCidaos();
+        }
+
     @GetMapping("/busca")
     public Cidadao detalha(@RequestParam String cpf) throws ExecutionException, InterruptedException {
         return cidadaoService.detalhaCidadao(cpf);
     }
 
-    @PutMapping("/atualiza")
-    public String atualiza(@Valid @RequestBody Cidadao cidadao) throws ExecutionException, InterruptedException {
+    @PutMapping("/atualiza/{cpf}")
+    public String atualiza(@Valid @PathVariable String cpf, @RequestBody  Cidadao cidadao){
         return cidadaoService.atualizaCidadao(cidadao);
 
     }
