@@ -27,7 +27,7 @@ public class CidadaoController {
 
     @GetMapping
     public List<Cidadao> lista() throws ExecutionException, InterruptedException {
-        return cidadaoService.listaCidaos();
+        return cidadaoService.listaCidadaos();
         }
 
     @GetMapping("/busca")

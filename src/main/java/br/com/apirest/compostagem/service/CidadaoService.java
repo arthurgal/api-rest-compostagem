@@ -35,7 +35,7 @@ public class CidadaoService {
         return null;
     }
 
-    public List<Cidadao> listaCidaos() throws ExecutionException, InterruptedException {
+    public List<Cidadao> listaCidadaos() throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> future = db.collection("cidadao").get();
 
         List<QueryDocumentSnapshot> documentos = future.get().getDocuments();
