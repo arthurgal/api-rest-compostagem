@@ -24,8 +24,8 @@ public class CidadaoService {
 
         try {
 
-            ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
-            colecaoEndereco.get().getUpdateTime().toString();
+            /*ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
+            colecaoEndereco.get().getUpdateTime().toString();*/
 
             ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
             return colecao.get().getUpdateTime().toString();
@@ -74,8 +74,8 @@ public class CidadaoService {
 
         try {
 
-            ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
-            colecaoEndereco.get().getUpdateTime().toString();
+            /*ApiFuture<WriteResult> colecaoEndereco = db.collection("endereco").document(cidadao.getEndereco().getCep()).set(cidadao);
+            colecaoEndereco.get().getUpdateTime().toString();*/
 
             ApiFuture<WriteResult> colecao = db.collection("cidadao").document(cidadao.getCpf()).set(cidadao);
             return colecao.get().getUpdateTime().toString();
